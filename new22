@@ -145,7 +145,125 @@ chases(X, Y) :-
 
 ---------code
 
+
+
+
 *************************** monkey banana******************************
 --------code
+
+
+
+
+% Initial state: monkey is at the middle of the room, banana is at the ceiling.
+at(monkey, middle).
+at(banana, ceiling).
+
+% Initial state: block is under the banana.
+under(banana, block).
+
+% Monkey can climb the block.
+climb(monkey, block).
+
+% Monkey can grasp the banana if they are at the same location.
+grasp(monkey) :- at(monkey, X), at(banana, X).
+
+% Monkey can reach the banana if it's not grasped yet.
+canreach(banana, monkey) :- at(monkey, middle), at(banana, ceiling).
+canreach(banana, monkey) :- at(monkey, middle), under(banana, block).
+
+% Monkey can get the banana if it can reach and grasp it.
+canget(banana, monkey) :- canreach(banana, monkey), grasp(monkey).
+
+
+------out put
+
+
+
+ canget(banana, monkey).
+
+
 *************************** adding numbers ******************************
 ----------code
+% Base case: When the list is empty, the sum is 0.
+sum_list([], 0).
+
+% Recursive case: Sum the head of the list with the sum of the rest of the list.
+sum_list([Head | Tail], Sum) :-
+    sum_list(Tail, RestSum),
+    Sum is Head + RestSum.
+
+
+
+% Example usage:
+?- sum_list([1, 2, 3, 4, 5], Sum).
+% Sum will contain the result: 15
+
+
+
+
+
+% Base case: Division by 0 is not allowed.
+divide(_, 0, 'Cannot divide by zero').
+
+% Division rule: Divide the first number by the second number.
+divide(X, Y, Result) :-
+    Y \= 0,
+    Result is X / Y.
+
+
+% Example usage:
+?- divide(10, 2, Result).
+% Result will contain the result: 5.0
+
+
+
+% Multiplication rule: Multiply two numbers.
+multiply(X, Y, Result) :-
+    Result is X * Y.
+
+
+% Example usage:
+?- multiply(5, 3, Result).
+% Result will contain the result: 15
+
+
+
+*************************** star paten ******************************
+
+---------code
+
+% Base case: When N is 0, there's no need to print stars.
+stars(0, _).
+
+% Recursive predicate to print N stars and decrement N for the next line.
+stars(N, N) :-
+    N > 0,
+    write('* '),
+    N1 is N - 1,
+    stars(N1, N1).
+
+% Recursive predicate to print N stars and increment N for the next line.
+stars(N, M) :-
+    N > 0,
+    write('* '),
+    N1 is N - 1,
+    stars(N1, M).
+
+% Predicate to generate a right-angled triangle of stars.
+generate_triangle(N) :-
+    generate_triangle(N, 1).
+
+generate_triangle(N, N) :-
+    stars(N, N).
+
+generate_triangle(N, M) :-
+    stars(M, M),
+    nl,  % Move to the next line
+    M1 is M + 1,
+    generate_triangle(N, M1).
+
+
+-------------out put
+
+
+generate_triangle(5).
