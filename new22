@@ -1,0 +1,151 @@
+*************************** family relationships*******************************
+
+__________________code 
+% Facts
+male(amara).
+male(kamal).
+male(nimal).
+male(chinthaka).
+male(shehan).
+male(perera).
+female(nayanaa).
+female(sumanaa).
+female(kusuma).
+female(dinesha).
+female(nethmi).
+female(sumanawathee).
+
+parent(amara, kamal).
+parent(amara, nimal).
+parent(amara, sumanaa).
+parent(amara, kusuma).
+parent(nayanaa, kamal).
+parent(nayanaa, nimal).
+parent(nayanaa, sumanaa).
+parent(nayanaa, kusuma).
+parent(perera, dinesha).
+parent(perera, nayanaa).
+parent(sumanawathee, dinesha).
+parent(sumanawathee, nayanaa).
+parent(chinthaka, shehan).
+parent(chinthaka, nethmi).
+parent(dinesha, shehan).
+parent(dinesha, nethmi).
+
+
+
+% Rules
+father(X, Y) :- male(X), parent(X, Y).
+mother(X, Y) :- female(X), parent(X, Y).
+
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
+
+grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
+
+cousin(X, Y) :- parent(P1, X), parent(P2, Y), P1 \= P2, grandparent(G, X), grandparent(G, Y).
+
+---------------out puts
+
+
+% Queries
+% a. Find the father and mother of Sumanaa.
+father(F, sumanaa).   
+mother(M, sumanaa).   
+
+% b. Find the ancestors of Shehan and Sumanas separately.
+ancestor(A, shehan). 
+ancestor(A, sumanaa). 
+
+% c. Find the grandparents of Sumanaa.
+grandparent(GP, sumanaa). 
+
+% d. Find the cousins of Kusuma.
+cousin(C, kusuma). 
+
+
+
+*************************** disk moveing******************************
+
+
+
+------------code
+
+hanoi(1, Source, Destination, _Intermediate) :-
+    write('Move disk 1 from '), write(Source), write(' to '), writeln(Destination).
+
+hanoi(N, Source, Destination, Intermediate) :-
+    N > 1,
+    M is N - 1,
+    hanoi(M, Source, Intermediate, Destination),
+    write('Move disk '), write(N), write(' from '), write(Source), write(' to '), writeln(Destination),
+    hanoi(M, Intermediate, Destination, Source).
+
+solve_hanoi(N) :- hanoi(N, 'Source', 'Destination', 'Intermediate').
+
+
+----------out put
+
+solve_hanoi(3).
+
+
+*************************** dogs and cats, large and small animals******************************
+
+
+-------------code
+
+% Facts
+dog(fido).
+dog(rover).
+dog(tom).
+dog(fred).
+cat(mary).
+cat(jane).
+cat(harry).
+cat(henry).
+cat(bill).
+cat(steve).
+
+% Rules to represent large and small animals
+large(fido).
+large(mary).
+large(fred).
+large(henry).
+large(bill).
+large(steve).
+small(harry).
+small(rover).
+small(jane).
+small(tom).
+
+% Rule to check if an animal chases another
+chases(X, Y) :-
+    (dog(X), cat(Y), small(Y); dog(X), cat(Y), small(X)),
+    not((dog(X), dog(Y))).
+
+
+
+-----------out puts
+
+% Queries
+% a. Does Fred chase Fido?
+% b. Does Henry chase Fred?
+% c. Does Tom chase Jane?
+% d. Does Fido chase Jane?
+
+% Run the queries to get the answers.
+
+?- chases(fred, fido). 
+?- chases(henry, fred). 
+?- chases(tom, jane). 
+?- chases(fido, jane). 
+
+
+*************************** water jug******************************
+
+---------code--------
+
+*************************** monkey banana******************************
+--------code
+*************************** adding numbers ******************************
+----------code
