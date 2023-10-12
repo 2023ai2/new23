@@ -357,3 +357,6 @@ calculator :-
     read(Operator),
     operation(A,B,Operator,Result),
     format("Your Output is ~w",[Result])
+
+
+
