@@ -289,8 +289,41 @@ generate_triangle(N, M) :-
     M1 is M + 1,
     generate_triangle(N, M1).
 
-
 -------------out put
 
 
 generate_triangle(5).
+
+
+***************************month ******************************
+------ccode
+
+% Facts
+days_in_month(january, 31).
+days_in_month(february, 28).
+days_in_month(march, 31).
+days_in_month(april, 30).
+days_in_month(may, 31).
+days_in_month(june, 30).
+days_in_month(july, 31).
+days_in_month(august, 31).
+days_in_month(september, 30).
+days_in_month(october, 31).
+days_in_month(november, 30).
+days_in_month(december, 31).
+
+% Rules
+number_of_days(Month, Days) :-
+    days_in_month(Month, Days).
+
+% Main query
+date:- write('Enter a month: '), read(UserMonth),
+   number_of_days(UserMonth, Days),
+    write(UserMonth), write(' has '), write(Days), write(' days.').
+
+
+-------------out put 
+
+number_of_days(may,Days).
+Days = 31.
+
