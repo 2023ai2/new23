@@ -179,7 +179,34 @@ canget(banana, monkey) :- canreach(banana, monkey), grasp(monkey).
 
 
 
- canget(banana, monkey).
+?— canget (banana,monkey )
+Yonkey push the block
+monkey IS under the banana
+honkey at the middle of the room and can reach the banana using block
+Nov monkey can get the banana
+
+?— push (monkey. block)
+Monkey push the block
+
+
+?— under(banana. block
+Monkey push the block
+Monkey as under the banana .
+
+
+?-canreach ( banana _ monkey )
+Monkey push the block
+Monkey IS under the banana .
+Monkey at the middle of the room and can reach the banana using block
+
+
+1
+?--canget (banana. monkey) .
+Monkey push the block
+Monkey is under the banana .
+Monkey at the middle of the room and can reach the banana using block
+Not,' monkey can get the banana
+
 
 
 *************************** adding numbers ******************************
