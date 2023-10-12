@@ -340,3 +340,20 @@ date:- write('Enter a month: '), read(UserMonth),
 number_of_days(may,Days).
 Days = 31.
 
+
+**************************calculater******************************
+
+operation(A,B,'+' ,Result) :- Result is A+B.
+operation(A,B,'-' ,Result) :- Result is A-B.
+operation(A,B,'*' ,Result) :- Result is A*B.
+operation(A,B,'/' ,Result) :- Result is A/B.
+
+calculator :-
+    write("Enter your First number:"),
+    read(A),
+    write("Enter your Second number:"),
+    read(B),
+    write("select your Operator :"),
+    read(Operator),
+    operation(A,B,Operator,Result),
+    format("Your Output is ~w",[Result])
